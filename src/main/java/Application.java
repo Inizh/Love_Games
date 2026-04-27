@@ -11,6 +11,8 @@ public class Application {
         switch (option){
             case 1:
                 game = new Flames(cin);break;
+            case 2:
+                game = new ChatInterface(cin); break;
             default:
                 System.out.println("Invalid Option");return;
         }
@@ -21,6 +23,7 @@ public class Application {
     public static void introduce(){
         System.out.println("===== Welcome to Loves Game ======");
         System.out.println("1 . FLAMES");
+        System.out.println("2 . CHAT INTERFACE");
         System.out.print("\nSelect you option : ");
     }
 
