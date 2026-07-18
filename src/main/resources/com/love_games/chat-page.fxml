@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane fx:id="rootStack"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.love_games.ChatController"
+           styleClass="root-pane"
+           prefWidth="700" prefHeight="820">
+
+    <!-- LOGIN -->
+    <VBox fx:id="loginPane" alignment="CENTER" spacing="0">
+        <VBox styleClass="login-card" spacing="18" alignment="CENTER">
+            <FontIcon iconLiteral="fas-comments" iconSize="42" iconColor="#6c5ce7"/>
+            <Label text="Join the Chat" styleClass="section-title"/>
+            <Label text="Connect to the Love Games room (server on localhost:8080)."
+                   styleClass="section-sub"
+                   wrapText="true"
+                   maxWidth="320"
+                   style="-fx-text-alignment: center;"/>
+
+            <TextField fx:id="nameField"
+                       promptText="Your display name"
+                       styleClass="field"
+                       maxWidth="320"/>
+
+            <Label fx:id="loginStatusLabel" text="" styleClass="status-text" wrapText="true" maxWidth="320"/>
+
+            <HBox spacing="12" alignment="CENTER">
+                <Button fx:id="connectButton" text="Connect" styleClass="primary-button" onAction="#connect"/>
+                <Button text="Back" styleClass="ghost-button" onAction="#goHome"/>
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <!-- CHAT -->
+    <VBox fx:id="chatPane" visible="false" managed="false">
+        <BorderPane VBox.vgrow="ALWAYS">
+            <top>
+                <HBox styleClass="chat-header" alignment="CENTER_LEFT" spacing="14">
+                    <Button styleClass="icon-button" onAction="#goHome">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-arrow-left" iconSize="16" iconColor="#2d3436"/>
+                        </graphic>
+                    </Button>
+                    <FontIcon iconLiteral="fas-user-circle" iconSize="40" iconColor="#6c5ce7"/>
+                    <VBox spacing="3" alignment="CENTER_LEFT">
+                        <Label fx:id="headerNameLabel" text="You" styleClass="header-name"/>
+                        <HBox spacing="6" alignment="CENTER_LEFT">
+                            <Circle fx:id="statusDot" radius="5" fill="#b2bec3"/>
+                            <Label fx:id="statusLabel" text="Offline" styleClass="status-text"/>
+                        </HBox>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Disconnect" styleClass="ghost-button" onAction="#disconnectOnly"/>
+                </HBox>
+            </top>
+
+            <center>
+                <ScrollPane fx:id="scrollPane"
+                            fitToWidth="true"
+                            hbarPolicy="NEVER"
+                            styleClass="scroll-clean"
+                            style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <content>
+                        <VBox fx:id="messagesBox" spacing="12" styleClass="chat-body"/>
+                    </content>
+                </ScrollPane>
+            </center>
+
+            <bottom>
+                <HBox styleClass="chat-input-bar" alignment="CENTER" spacing="12">
+                    <TextField fx:id="messageField"
+                               promptText="Type your message… (exit to leave)"
+                               HBox.hgrow="ALWAYS"
+                               styleClass="field"/>
+                    <Button fx:id="sendButton" styleClass="send-button" onAction="#sendMessage">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-paper-plane" iconSize="18" iconColor="white"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </VBox>
+</StackPane>

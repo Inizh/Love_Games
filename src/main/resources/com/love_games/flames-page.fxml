@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.love_games.FlamesController"
+      styleClass="root-pane"
+      spacing="20"
+      prefWidth="720" prefHeight="720">
+
+    <padding>
+        <Insets top="20" right="32" bottom="28" left="32"/>
+    </padding>
+
+    <!-- Top bar -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <Button styleClass="icon-button" onAction="#goHome">
+            <graphic>
+                <FontIcon iconLiteral="fas-arrow-left" iconSize="18" iconColor="#2d3436"/>
+            </graphic>
+        </Button>
+        <VBox spacing="2">
+            <Label text="FLAMES" styleClass="section-title"/>
+            <Label text="Type two names. Fate does the rest." styleClass="section-sub"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="card" spacing="18" maxWidth="520" alignment="CENTER">
+        <VBox.margin>
+            <Insets top="8"/>
+        </VBox.margin>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <FontIcon iconLiteral="fas-heart" iconSize="18" iconColor="#e84393"/>
+            <Label text="Her name" style="-fx-font-weight: 600; -fx-text-fill: #2d3436;"/>
+        </HBox>
+        <TextField fx:id="herNameField" promptText="e.g. Nayanthara" styleClass="field"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <FontIcon iconLiteral="fas-user" iconSize="18" iconColor="#6c5ce7"/>
+            <Label text="His name" style="-fx-font-weight: 600; -fx-text-fill: #2d3436;"/>
+        </HBox>
+        <TextField fx:id="hisNameField" promptText="e.g. Vignesh" styleClass="field"/>
+
+        <HBox spacing="12" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
+            <Button text="Calculate" styleClass="primary-button" onAction="#calculate"/>
+            <Button text="Clear" styleClass="ghost-button" onAction="#clearForm"/>
+        </HBox>
+    </VBox>
+
+    <Label fx:id="hintLabel"
+           text="Enter two names and discover your fate."
+           styleClass="section-sub"
+           alignment="CENTER"
+           maxWidth="Infinity"
+           style="-fx-alignment: center; -fx-text-alignment: center;"/>
+
+    <VBox fx:id="resultCard" styleClass="result-card" spacing="8" alignment="CENTER" maxWidth="520">
+        <Label fx:id="resultLetterLabel" text="L" styleClass="result-letter"/>
+        <Label fx:id="resultTitleLabel" text="LOVE" styleClass="result-title"/>
+        <Label fx:id="resultDescLabel"
+               text="True love is blooming between you two!"
+               styleClass="result-desc"
+               wrapText="true"
+               maxWidth="400"/>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+</VBox>

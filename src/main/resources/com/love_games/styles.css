@@ -1,0 +1,250 @@
+/* Love Games — shared theme */
+
+.root-pane {
+    -fx-font-family: "Segoe UI", "SF Pro Text", system-ui, sans-serif;
+    -fx-background-color: linear-gradient(to bottom right, #fdf2f8, #f3e8ff, #ede9fe);
+}
+
+/* ----- Home ----- */
+.hero-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.hero-sub {
+    -fx-font-size: 15px;
+    -fx-text-fill: #636e72;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.menu-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 22 26;
+    -fx-effect: dropshadow(gaussian, rgba(108, 92, 231, 0.12), 18, 0.2, 0, 6);
+    -fx-cursor: hand;
+    -fx-border-color: #efe9ff;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+
+.menu-card:hover {
+    -fx-background-color: #faf8ff;
+    -fx-effect: dropshadow(gaussian, rgba(108, 92, 231, 0.22), 22, 0.25, 0, 8);
+}
+
+.menu-card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.menu-card-desc {
+    -fx-font-size: 13px;
+    -fx-text-fill: #636e72;
+    -fx-wrap-text: true;
+}
+
+/* ----- Shared controls ----- */
+.primary-button {
+    -fx-background-color: #6c5ce7;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 24;
+    -fx-padding: 12 28;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #5a4bd1;
+}
+
+.primary-button:disabled {
+    -fx-opacity: 0.55;
+}
+
+.ghost-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6c5ce7;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16;
+    -fx-border-color: #c4b5fd;
+    -fx-border-radius: 20;
+    -fx-cursor: hand;
+}
+
+.ghost-button:hover {
+    -fx-background-color: rgba(108, 92, 231, 0.08);
+}
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 8;
+    -fx-background-radius: 50;
+}
+
+.icon-button:hover {
+    -fx-background-color: #f1f3f5;
+}
+
+.field {
+    -fx-background-radius: 16;
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e9ecef;
+    -fx-border-radius: 16;
+    -fx-padding: 12 16;
+    -fx-font-size: 14px;
+}
+
+.field:focused {
+    -fx-border-color: #6c5ce7;
+    -fx-background-color: white;
+}
+
+.section-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.section-sub {
+    -fx-font-size: 14px;
+    -fx-text-fill: #636e72;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(45, 52, 54, 0.08), 16, 0.15, 0, 4);
+}
+
+/* ----- FLAMES result ----- */
+.result-letter {
+    -fx-font-size: 56px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6c5ce7;
+}
+
+.result-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.result-desc {
+    -fx-font-size: 14px;
+    -fx-text-fill: #636e72;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.result-card {
+    -fx-background-color: linear-gradient(to bottom right, #f5f3ff, #fdf2f8);
+    -fx-background-radius: 20;
+    -fx-padding: 28;
+    -fx-border-color: #ddd6fe;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-alignment: center;
+}
+
+/* ----- Chat ----- */
+.chat-header {
+    -fx-background-color: white;
+    -fx-padding: 16 22;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 0 0 1 0;
+}
+
+.chat-body {
+    -fx-background-color: transparent;
+    -fx-padding: 16 20;
+}
+
+.chat-input-bar {
+    -fx-background-color: white;
+    -fx-padding: 14 18;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1 0 0 0;
+}
+
+.send-button {
+    -fx-background-color: #6c5ce7;
+    -fx-background-radius: 50;
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-max-width: 48;
+    -fx-max-height: 48;
+    -fx-cursor: hand;
+}
+
+.send-button:hover {
+    -fx-background-color: #5a4bd1;
+}
+
+.send-button:disabled {
+    -fx-opacity: 0.5;
+}
+
+.bubble {
+    -fx-font-size: 14px;
+    -fx-padding: 12 16;
+    -fx-wrap-text: true;
+}
+
+.bubble-sent {
+    -fx-background-color: #6c5ce7;
+    -fx-text-fill: white;
+    -fx-background-radius: 18 18 4 18;
+}
+
+.bubble-received {
+    -fx-background-color: white;
+    -fx-text-fill: #2d3436;
+    -fx-background-radius: 18 18 18 4;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1;
+}
+
+.bubble-system {
+    -fx-background-color: rgba(108, 92, 231, 0.08);
+    -fx-text-fill: #636e72;
+    -fx-font-size: 12px;
+    -fx-background-radius: 12;
+    -fx-padding: 8 14;
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 24;
+    -fx-padding: 36 40;
+    -fx-effect: dropshadow(gaussian, rgba(108, 92, 231, 0.15), 24, 0.2, 0, 8);
+    -fx-max-width: 420;
+}
+
+.status-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #636e72;
+}
+
+.header-name {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.scroll-clean {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-clean > .viewport {
+    -fx-background-color: transparent;
+}
