@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../chat/chat_client.dart';
 import '../theme/love_colors.dart';
@@ -16,52 +16,37 @@ class HomeScreen extends StatelessWidget {
     return LoveBackground(
       child: Scaffold(
         body: SafeArea(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: (constraints.maxHeight - 36).clamp(
-                      0,
-                      double.infinity,
-                    ),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 480),
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(20, 28, 20, 24),
+                children: [
+                  const _Hero(),
+                  const SizedBox(height: 28),
+                  _GameCard(
+                    key: const Key('open-flames'),
+                    icon: Icons.local_fire_department_rounded,
+                    iconColor: LoveColors.flame,
+                    iconBackground: const Color(0xFFFFF0EC),
+                    title: 'FLAMES',
+                    description: "Discover if it's Friends, Love, Affection, Marriage, Enemy or Sister.",
+                    onTap: () => _open(context, const FlamesScreen()),
                   ),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 480),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const _Hero(),
-                          const SizedBox(height: 32),
-                          _GameCard(
-                            key: const Key('open-flames'),
-                            icon: Icons.local_fire_department_rounded,
-                            iconColor: LoveColors.flame,
-                            iconBackground: const Color(0xFFFFF0EC),
-                            title: 'FLAMES',
-                            description: "Discover if it's Friends, Love, Affection, Marriage, Enemy or Sister.",
-                            onTap: () => _open(context, const FlamesScreen()),
-                          ),
-                          const SizedBox(height: 14),
-                          _GameCard(
-                            key: const Key('open-chat'),
-                            icon: Icons.chat_bubble_rounded,
-                            iconColor: LoveColors.primary,
-                            iconBackground: const Color(0xFFF3F0FF),
-                            title: 'Chat',
-                            description: 'Connect to the live room and message other players in real time.',
-                            onTap: () =>
-                                _open(context, ChatScreen(client: chatClient)),
-                          ),
-                        ],
-                      ),
-                    ),
+                  const SizedBox(height: 14),
+                  _GameCard(
+                    key: const Key('open-chat'),
+                    icon: Icons.chat_bubble_rounded,
+                    iconColor: LoveColors.primary,
+                    iconBackground: const Color(0xFFF3F0FF),
+                    title: 'Chat',
+                    description: 'Connect to the live room and message other players in real time.',
+                    onTap: () => _open(context, ChatScreen(client: chatClient)),
                   ),
-                ),
-              );
-            },
+                ],
+              ),
+            ),
           ),
         ),
       ),

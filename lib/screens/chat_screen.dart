@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../chat/chat_client.dart';
 import '../chat/chat_config.dart';
@@ -231,126 +231,121 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildJoin() {
     final presence = presenceFor(_loginStatus);
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 440),
+        child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight - 32),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 440),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: LoveColors.shadow,
-                        blurRadius: 24,
-                        offset: Offset(0, 8),
-                      ),
-                    ],
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: const [
+                BoxShadow(
+                  color: LoveColors.shadow,
+                  blurRadius: 24,
+                  offset: Offset(0, 8),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.chat_bubble_rounded,
+                    color: LoveColors.primary,
+                    size: 32,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(22, 28, 22, 22),
-                    child: Column(
-                      children: [
-                        const Icon(
-                          Icons.chat_bubble_rounded,
-                          color: LoveColors.primary,
-                          size: 42,
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Join the chat',
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Message the Love Games room. The server listens on port 8080.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: LoveColors.muted,
-                            height: 1.4,
-                          ),
-                        ),
-                        const SizedBox(height: 22),
-                        TextField(
-                          key: const Key('chat-name'),
-                          controller: _nameController,
-                          textInputAction: TextInputAction.next,
-                          textCapitalization: TextCapitalization.words,
-                          keyboardType: TextInputType.name,
-                          decoration: const InputDecoration(
-                            hintText: 'Your display name',
-                          ),
-                          onSubmitted: (_) => _connect(),
-                        ),
-                        const SizedBox(height: 14),
-                        TextField(
-                          key: const Key('chat-server'),
-                          controller: _serverController,
-                          keyboardType: TextInputType.url,
-                          autocorrect: false,
-                          decoration: const InputDecoration(
-                            labelText: 'Server',
-                            hintText: 'localhost:8080',
-                          ),
-                          onSubmitted: (_) => _connect(),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          "On a phone, use your computer's IP address. Android emulator: 10.0.2.2:8080.",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: LoveColors.muted,
-                            height: 1.35,
-                          ),
-                        ),
-                        if (_loginStatus.isNotEmpty) ...[
-                          const SizedBox(height: 12),
-                          Text(
-                            _loginStatus,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: _statusColor(presence),
-                              height: 1.35,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 18),
-                        SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            key: const Key('chat-connect'),
-                            onPressed: _busy ? null : _connect,
-                            child: _busy
-                                ? const SizedBox(
-                                    width: 22,
-                                    height: 22,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2.4,
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                : const Text('Connect'),
-                          ),
-                        ),
-                      ],
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Join the chat',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Message the Love Games room. The server listens on port 8080.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: LoveColors.muted,
+                      height: 1.4,
                     ),
                   ),
-                ),
+                  const SizedBox(height: 14),
+                  TextField(
+                    key: const Key('chat-name'),
+                    controller: _nameController,
+                    textInputAction: TextInputAction.next,
+                    textCapitalization: TextCapitalization.words,
+                    keyboardType: TextInputType.name,
+                    decoration: const InputDecoration(
+                      hintText: 'Your display name',
+                    ),
+                    onSubmitted: (_) => _connect(),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    key: const Key('chat-server'),
+                    controller: _serverController,
+                    keyboardType: TextInputType.url,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Server',
+                      hintText: 'localhost:8080',
+                    ),
+                    onSubmitted: (_) => _connect(),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "On a phone, use your computer's IP address. Android emulator: 10.0.2.2:8080.",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: LoveColors.muted,
+                      height: 1.35,
+                    ),
+                  ),
+                  if (_loginStatus.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      _loginStatus,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color:
+                            _loginStatus.startsWith('Please') ||
+                                _loginStatus.startsWith('Enter a server')
+                            ? LoveColors.danger
+                            : _statusColor(presence),
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      key: const Key('chat-connect'),
+                      onPressed: _busy ? null : _connect,
+                      child: _busy
+                          ? const SizedBox(
+                              width: 22,
+                              height: 22,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.4,
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Text('Connect'),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 

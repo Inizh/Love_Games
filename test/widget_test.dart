@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loves_games/app.dart';
 import 'package:loves_games/chat/chat_client.dart';
 import 'package:loves_games/chat/chat_config.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -12,10 +12,20 @@ void main() {
     ChatClient? chatClient,
     Size size = const Size(390, 844),
   }) async {
+    final dispatcher = tester.view.platformDispatcher;
     tester.view.devicePixelRatio = 1;
     tester.view.physicalSize = size;
+    dispatcher.textScaleFactorTestValue = 1;
+    // The test view copies the host machine's accessibility spacing.
+    dispatcher.lineHeightScaleFactorOverrideTestValue = null;
+    dispatcher.letterSpacingOverrideTestValue = null;
+    dispatcher.wordSpacingOverrideTestValue = null;
     addTearDown(tester.view.resetDevicePixelRatio);
     addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(dispatcher.clearTextScaleFactorTestValue);
+    addTearDown(dispatcher.clearLineHeightScaleFactorOverrideTestValue);
+    addTearDown(dispatcher.clearLetterSpacingOverrideTestValue);
+    addTearDown(dispatcher.clearWordSpacingOverrideTestValue);
     await tester.pumpWidget(
       LoveGamesApp(config: ChatConfig(), chatClient: chatClient),
     );
@@ -31,6 +41,7 @@ void main() {
       findsOneWidget,
     );
 
+    await tester.ensureVisible(find.byKey(const Key('open-flames')));
     await tester.tap(find.byKey(const Key('open-flames')));
     await tester.pumpAndSettle();
 
@@ -65,6 +76,7 @@ void main() {
 
   testWidgets('FLAMES fits a small phone', (tester) async {
     await pumpApp(tester, size: const Size(320, 568));
+    await tester.ensureVisible(find.byKey(const Key('open-flames')));
     await tester.tap(find.byKey(const Key('open-flames')));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('her-name')), 'AA');
@@ -77,6 +89,8 @@ void main() {
 
   testWidgets('chat asks for a name before connecting', (tester) async {
     await pumpApp(tester, size: const Size(320, 640));
+    await tester.ensureVisible(find.byKey(const Key('open-chat')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('open-chat')));
     await tester.pumpAndSettle();
 
@@ -89,6 +103,8 @@ void main() {
 
     await tester.enterText(find.byKey(const Key('chat-name')), 'Priya');
     await tester.enterText(find.byKey(const Key('chat-server')), ':::');
+    await tester.ensureVisible(find.byKey(const Key('chat-connect')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('chat-connect')));
     await tester.pumpAndSettle();
     expect(find.text('Enter a server like 192.168.1.20:8080.'), findsOneWidget);
@@ -104,6 +120,7 @@ void main() {
     final room = ScriptedChatClient();
     await pumpApp(tester, chatClient: room);
 
+    await tester.ensureVisible(find.byKey(const Key('open-chat')));
     await tester.tap(find.byKey(const Key('open-chat')));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('chat-name')), 'Priya');
